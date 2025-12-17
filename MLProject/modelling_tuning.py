@@ -88,6 +88,5 @@ def main():
         print("Tuning Selesai. Cek DagsHub untuk hasil.")
 
 if __name__ == "__main__":
-    dagshub.init(repo_owner='fakihwidatmojo', repo_name='Eksperimen_SML_Fakih-Widatmojo', mlflow=True)
-
     main()
+
