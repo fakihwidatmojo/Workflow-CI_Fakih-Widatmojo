@@ -26,12 +26,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    # Preprocessing
-    - name: Run Preprocessing
-      run: |
-        python MLProject/automate_Fakih-Widatmojo.py
-
-    # 4. Run Model Training (Test Run)
+    # 4. Set Environment Variables & Run Training
+    # Ini menjalankan script modelling_tuning.py untuk memastikan tidak ada error code
+    # dan menghasilkan artefak model.
     - name: Run Model Training (Test Run)
       env:
         MLFLOW_TRACKING_USERNAME: ${{ secrets.DAGSHUB_USERNAME }}
@@ -40,15 +37,18 @@ jobs:
         python MLProject/modelling_tuning.py
 
     # 5. Build Docker Image
+    # Kita akan membuild image manual yang berisi environment dan script kita.
     - name: Build Docker Image
       run: |
+        # Membuat Dockerfile sederhana secara dinamis
         echo "FROM python:3.9-slim" > Dockerfile
         echo "WORKDIR /app" >> Dockerfile
         echo "COPY requirements.txt ." >> Dockerfile
         echo "RUN pip install -r requirements.txt" >> Dockerfile
         echo "COPY . /app" >> Dockerfile
-        echo "CMD python MLProject/automate_Fakih-Widatmojo.py && python MLProject/modelling_tuning.py" >> Dockerfile
+        echo "CMD [\"python\", \"MLProject/modelling_tuning.py\"]" >> Dockerfile
         
+        # Build image dengan tag 'latest'
         docker build -t ${{ secrets.DOCKER_USERNAME }}/submission-sml:latest .
 
     # 6. Login to Docker Hub
@@ -58,7 +58,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    # 7. Push Image to Docker Hub
+    # 7. Push Image to Docker Hub (Syarat Advanced)
     - name: Push Docker Image
       run: |
         docker push ${{ secrets.DOCKER_USERNAME }}/submission-sml:latest
