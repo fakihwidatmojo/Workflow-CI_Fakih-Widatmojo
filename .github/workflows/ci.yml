@@ -38,12 +38,11 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: final-model-data      # Nama file zip nanti
+        name: final-model-data      # Nama file zip 
         path: MLProject/online-sales-dataset_preprocessing.csv # File yang akan disimpan
         retention-days: 5
 
     # 5. Build Docker Image
-    # Kita akan membuild image manual yang berisi environment dan script kita.
     - name: Build Docker Image
       run: |
         # Membuat Dockerfile sederhana secara dinamis
