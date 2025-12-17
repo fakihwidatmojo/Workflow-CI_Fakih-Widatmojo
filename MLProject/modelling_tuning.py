@@ -7,9 +7,6 @@ import mlflow
 import mlflow.sklearn
 import os
 import dagshub
-from dagshub import upload_files
-
-upload_files('fakihwidatmojo/Eksperimen_SML_Fakih-Widatmojo', 'online-sales-dataset_preprocessing.csv')
 
 # Konfigurasi Dagshub
 DAGSHUB_URI = "https://dagshub.com/fakihwidatmojo/Eksperimen_SML_Fakih-Widatmojo.mlflow" 
@@ -92,4 +89,5 @@ def main():
 
 if __name__ == "__main__":
     dagshub.init(repo_owner='fakihwidatmojo', repo_name='Eksperimen_SML_Fakih-Widatmojo', mlflow=True)
+
     main()
