@@ -1,6 +1,7 @@
 pandas==2.3.3
 matplotlib
 seaborn==0.13.2
-scikit-learn==1.7.2
+scikit-learn==1.6.1
 mlflow==2.18.0
 dagshub==0.6.4
+
