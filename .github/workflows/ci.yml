@@ -32,7 +32,7 @@ jobs:
         MLFLOW_TRACKING_USERNAME: ${{ secrets.DAGSHUB_USERNAME }}
         MLFLOW_TRACKING_PASSWORD: ${{ secrets.DAGSHUB_TOKEN }}
       run: |
-        python modelling_tuning.py
+        python MLProject/modelling_tuning.py
 
     # 5. Build Docker Image
     # Build image manual yang berisi environment dan script
@@ -44,7 +44,7 @@ jobs:
         echo "COPY requirements.txt ." >> Dockerfile
         echo "RUN pip install -r requirements.txt" >> Dockerfile
         echo "COPY . /app" >> Dockerfile
-        echo "CMD [\"python\", \"modelling_tuning.py\"]" >> Dockerfile
+        echo "CMD [\"python\", \"MLProject/modelling_tuning.py\"]" >> Dockerfile
         
         # Build image dengan tag 'latest'
         docker build -t ${{ secrets.DOCKER_USERNAME }}/submission-sml:latest .
