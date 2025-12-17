@@ -75,8 +75,8 @@ def preprocess_data(df):
 
 def main():
     # Path dataset input 
-    input_path = 'online-sales-dataset_raw.csv'
-    output_path = 'preprocessing/online-sales-dataset_preprocessing.csv'
+    input_path = 'MLProject/online-sales-dataset_raw.csv'
+    output_path = 'MLProject/online-sales-dataset_preprocessing.csv'
     
     # Load
     print(f"Loading data dari {input_path}...")
@@ -95,4 +95,5 @@ def main():
     print("Preprocessing Selesai!")
 
 if __name__ == "__main__":
+
     main()
