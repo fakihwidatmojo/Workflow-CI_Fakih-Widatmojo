@@ -40,7 +40,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: final-model-data      # Nama file zip 
-        path: MLProject/online-sales-dataset_preprocessing.csv # File yang akan disimpan
+        path: online-sales-dataset_preprocessing.csv # File yang akan disimpan
         retention-days: 5
 
     # 5. Build Docker Image
