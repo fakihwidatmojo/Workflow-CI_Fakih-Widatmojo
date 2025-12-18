@@ -15,6 +15,10 @@ def load_data(path):
     return pd.read_csv(path)
 
 def main():
+    if "MLFLOW_RUN_ID" in os.environ:
+        print("Mendeteksi MLFLOW_RUN_ID lokal. Menghapus agar tidak konflik dengan DagsHub...")
+        del os.environ["MLFLOW_RUN_ID"]
+        
     # 1. Load Data Processed
     print("Loading data...")
     try:
@@ -89,3 +93,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
