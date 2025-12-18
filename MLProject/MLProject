@@ -1,7 +1,0 @@
-name: Eksperimen SML Advanced
-
-conda_env: conda.yaml
-
-entry_points:
-  main:
-    command: "python MLProject/modelling_tuning.py"
